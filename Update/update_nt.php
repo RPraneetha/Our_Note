@@ -19,17 +19,17 @@
     		<div>
       			<ul class="nav navbar-nav">
         			<li><a href="../home.php">Home</a></li>
-					<li class="active" class="dropdown">
+					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 							Create <span class="caret"></span>	
 						</a>
 						<ul class="dropdown-menu">
-            				<li><a href="create_note.php">Note</a></li>
+            				<li><a href="../create/create_note.php">Note</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="create_chk.php">Check Box</a></li>
+							<li><a href="../create/create_chk.php">Check Box</a></li>
           				</ul>
 					</li>
-        			<li><a href="../display/disp.php">Display</a></li>
+        			<li><a href="../display/disp.php">Display</a></li>			 
       			</ul>
 				<ul class="nav navbar-nav navbar-right">
         			<li><a href='../index.php'><span class="glyphicon glyphicon-off"></span> Log Out</a></li>
@@ -39,6 +39,7 @@
 	</nav>
 <?php
 	echo('<br><br><br>');
+	$note_id=$_SESSION['note_id'];
 	$group=$_POST['group'];
 	$imp=$_POST['imp'];
 	$dtr=$_POST['dtr'];
@@ -49,9 +50,8 @@
 	$comp=0;
 
 	$user_id=$_SESSION['SESS_MEMBER_ID'];
-	echo $user_id;
-	$created=date("Y-m-d");
-	$modified=$created;
+
+	$modified=date("Y-m-d");
 	
 	$connect=mysqli_connect("localhost","root","");
 	if (mysqli_connect_errno()) 
@@ -62,52 +62,30 @@
 	$c="USE dbms_pro;";
 	$c1=mysqli_query($connect,$c);
 
-	$q1="INSERT INTO Note(user_id,notes,title,n_group,clr_code,imp,comp) VALUES
-	(
-		'$user_id',
-		'$note',
-		'$title',
-		'$group',
-		'$clr_code',
-		'$imp',
-		'$comp'
-	);";
-
+	$q1="UPDATE note SET notes='$note',title='$title'
+		WHERE user_id=$user_id AND note_id=$note_id;";	
 	if(!mysqli_query($connect,$q1))
 	{
 		echo("Error description 1: " . mysqli_error($connect));
 		echo('<br><br>');
 	}
 
-	$q1="SELECT * FROM Note;";
-	$w=mysqli_query($connect,$q1);
-	if(!$w)
+	$q1="UPDATE note SET n_group='$group',clr_code='$clr_code',imp=$imp
+		WHERE user_id=$user_id AND note_id=$note_id;";	
+	if(!mysqli_query($connect,$q1))
 	{
-		echo("Error description 3: " . mysqli_error($connect));
+		echo("Error description 1: " . mysqli_error($connect));
 		echo('<br><br>');
 	}
-	if(mysqli_num_rows($w) > 0) 
-    {
-		while ($row = mysqli_fetch_array($w))
-    	{
-    		$note_id = $row['note_id'];
-    	}
-	}
-	$q1="INSERT INTO Date_N VALUES
-	(
-		'$user_id',
-		'$note_id',
-		'$dtr',
-		'$ttr',
-		'$created',
-		'$modified'
-	);";	
 
+	$q1="UPDATE Date_N SET date_rem='$dtr',time_rem='$ttr',modified='$modified'
+		WHERE user_id=$user_id AND note_id=$note_id;";	
 	if(!mysqli_query($connect,$q1))
 	{
 		echo("Error description 2: " . mysqli_error($connect));
 		echo('<br><br>');
 	}
+
 	echo("<br><br><br>");
 	mysqli_close($connect);
 ?>

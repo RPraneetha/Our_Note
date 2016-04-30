@@ -29,10 +29,7 @@
 							<li><a href="create_chk.php">Check Box</a></li>
           				</ul>
 					</li>
-        			<li><a href="../display/disp.php">Display</a></li>
-					<li><a href="../search/search.php">Search</a></li>
-					<li><a href="../update/update.php">Update</a></li>
-					<li><a href="../delete/del_disp.php">Delete</a></li>
+        			<li><a href="../display/disp.php">Display</a></li>					 
       			</ul>
 				<ul class="nav navbar-nav navbar-right">
         			<li><a href='../index.php'><span class="glyphicon glyphicon-off"></span> Log Out</a></li>
@@ -51,8 +48,8 @@
 			<td>
 			<table style="width:0%" align="center" class="table table-bordered table-hover table-condensed">
 				<tr>
-					<td>Note ID: </td>
-					<td><input type="text" name="note_id" required></td>
+					<td>Title: </td>						
+					<td><input type="text" name="title" required></td>
 				</tr>
 				<tr>
 					<td>Group: </td>						
@@ -84,10 +81,6 @@
 			<td>
 			<table style="width:0%" align="right" class="table table-bordered table-hover table-condensed">
 				<tr>
-					<td>Title: </td>						
-					<td><input type="text" name="title" required></td>
-				</tr>
-				<tr>
 					<td>Color Code: </td>						
 					<td>
 						<select name="clr_code" required>
@@ -108,6 +101,10 @@
 				<tr>
 					<td>No of Check Boxes: </td>
 					<td><input type="text" name="no_cb" required></textarea></td>
+				</tr>
+				<tr>
+					<td></td>						
+					<td><input type="text" name ="" disabled></td>
 				</tr>
 			</table>
 			</td>

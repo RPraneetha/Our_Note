@@ -26,13 +26,13 @@
 	$c="USE dbms_pro;";
 	$c1=mysqli_query($connect,$c);
 
-	$q1="INSERT INTO N_User VALUES('$mem_id','$umn','$fnm','$lnm','$pwrd','$email','$add','$cont','$gender',FALSE)";
+	$q1="INSERT INTO N_User VALUES('$mem_id','$umn','$pwrd','$fnm','$lnm','$email','$add','$cont','$gender',FALSE)";
 	if(!mysqli_query($connect,$q1))
 	{
 		echo"<head>
 			<title>User Details</title>
-			<h1 align='center'>Login Created Un-Successfully!! :(</h1>
-			<h3 align='center'>Cheack your Details again just incase.</h3>
+			<h1 align='center'>Login Un-Successful!! :(</h1>
+			
 			<style>
 			table, th, td 
 			{
@@ -59,7 +59,7 @@
 	echo"<head>
 			<title>User Details</title>
 			<h1 align='center'>Login Created Successfully!!</h1>
-			<h3 align='center'>Cheack your Details again just incase.</h3>
+			<h3 align='center'>Check your Details again just incase.</h3>
 			<style>
 			table, th, td 
 			{

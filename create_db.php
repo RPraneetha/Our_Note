@@ -4,13 +4,10 @@
 	{
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 	}
-
 	$createdb="CREATE DATABASE dbms_pro;";
 	$crate1=mysqli_query($connect,$createdb);
-
 	$c="USE dbms_pro;";
 	$c1=mysqli_query($connect,$c);
-
 	$qry1="
 	CREATE TABLE N_User
 	(
@@ -27,11 +24,10 @@
 	)";
 	
 	$result1=mysqli_query($connect,$qry1);
-
 	$qry2="
 	CREATE TABLE Note
 	(
-  		note_id INT,
+  		note_id INT AUTO_INCREMENT,
   		user_id INT,
   		notes VARCHAR(100),
   		title VARCHAR(20),
@@ -42,9 +38,7 @@
   		CONSTRAINT fk FOREIGN KEY (user_id) REFERENCES N_User(user_id),
   		CONSTRAINT pk1  PRIMARY KEY(note_id,user_id) 
 	)";
-
 	$result2=mysqli_query($connect,$qry2);
-
 	$qry3="
 	CREATE TABLE Date_N
 	(
@@ -54,13 +48,11 @@
   		time_rem VARCHAR(20),
   		created DATE NOT NULL,
   		modified DATE NOT NULL,
-  		CONSTRAINT pk2 PRIMARY KEY(note_id,user_id),
   		CONSTRAINT fk1 FOREIGN KEY (note_id) REFERENCES Note(note_id),
-  		CONSTRAINT fk2 FOREIGN KEY (user_id) REFERENCES N_User(user_id)
+  		CONSTRAINT fk2 FOREIGN KEY (user_id) REFERENCES N_User(user_id),
+		CONSTRAINT pk2 PRIMARY KEY(note_id,user_id)
 	)";
-
 	$result3=mysqli_query($connect,$qry3);
-
 	$qry4="
 	CREATE TABLE Chkbox
 	(
@@ -73,11 +65,8 @@
   		CONSTRAINT fk4 FOREIGN KEY (user_id) REFERENCES N_User(user_id),
   		CONSTRAINT pk3 PRIMARY KEY(note_id,chkbox_no,user_id) 
 	)";
-
 	$result4=mysqli_query($connect,$qry4);
-
-	$q1="INSERT INTO N_User VALUES(0,'root','root','root','root','root@admin.com','admin_dept','1234','Male',TRUE)";
+	$q1="INSERT INTO N_User VALUES(0,'root','root','root','root','root@admin.com','admin_dept','1234','M',TRUE)";
 	$r=mysqli_query($connect,$q1);
-
 	mysqli_close($connect);
 ?>
